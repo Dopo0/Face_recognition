@@ -4,12 +4,13 @@ This Streamlit app leverages the power of MediaPipe and OpenCV to perform face r
 
 ## Features
 Real-time Face Recognition: The app uses the MediaPipe library to detect and recognize faces in real-time.
+
 Webcam Integration: Capture video input from your webcam directly within the app.
+
 User-Friendly Interface: Streamlit provides an intuitive interface for users to interact with the face recognition features.
+
 OpenCV Integration: The app utilizes OpenCV for image processing and handling video streams.
 
 ## Prerequisites
-Make sure you have the following installed:
+to run in your computer you can use the environment.yml file to create and install all the packages needed to run this project
 
-Python 3.11
-Pip (Python package installer)
