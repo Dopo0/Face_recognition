@@ -5,7 +5,7 @@ st.title('Unlocking the Mysteries of Your Face')
 
 def main():
     st.title('CNN')
-    gif_path = "GIF_FaceRecognitionn.gif"
+    gif_path = "icons/GIF_FaceRecognitionn.gif"
 
 
     with open(gif_path, "rb") as file_:

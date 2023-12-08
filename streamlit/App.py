@@ -12,7 +12,7 @@ def main():
     #st.set_page_config(page_title="Face Recognition App", page_icon='face_with_spiral_eyes', )
 
 
-    gif_path = "GIF_Face.gif"
+    gif_path = "icons/GIF_Face.gif"
 
 
     with open(gif_path, "rb") as file_:
