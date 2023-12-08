@@ -1,3 +1,4 @@
+# Libraries
 import streamlit as st
 from PIL import Image
 import base64
@@ -9,19 +10,13 @@ time.sleep(3)
 initialize_app()
 
 def main():
-    #st.set_page_config(page_title="Face Recognition App", page_icon='face_with_spiral_eyes', )
-
-
     gif_path = "icons/GIF_Face.gif"
-
 
     with open(gif_path, "rb") as file_:
         contents = file_.read()
 
     # Encoding the GIF file
     data_url = base64.b64encode(contents).decode("utf-8")
-
-    #st.set_page_config(page_title="Face Recognition App", page_icon='face_with_spiral_eyes', )
 
     st.markdown(
         f'<img src="data:image/gif;base64,{data_url}" alt="face gif">',

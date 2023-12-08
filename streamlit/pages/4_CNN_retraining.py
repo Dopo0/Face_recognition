@@ -14,6 +14,7 @@ import streamlit as st
 import time
 
 
+# Definition of the class
 class Network(nn.Module):
     def __init__(self):
         super(Network, self).__init__()
@@ -54,6 +55,7 @@ def initialize_parameters(m):
         nn.init.xavier_normal_(m.weight.data, gain=nn.init.calculate_gain('relu'))
         nn.init.constant_(m.bias.data, 0)
 
+# Save model
 def save_model(model):
     with st.spinner('saving model...'):
         time.sleep(5)
@@ -61,13 +63,19 @@ def save_model(model):
     st.success('Saved!')
 def main():
     st.title('CNN retraining')
+
+    # Selecting devices available
     devices = ['cpu']
     device = ("cuda" if torch.cuda.is_available() else "cpu")
     devices.append(device)
     if len(devices)>1:
         st.sidebar.selectbox("Select device:", devices)
+
+    # Inputs from user
     epoch = st.sidebar.slider('Epoch',min_value=1, max_value=100, value=20, step=1 )
     save_models = st.sidebar.checkbox('Save model after training')
+
+    # path to the folder with the images
     current_script_dir = os.path.dirname(os.path.abspath(__file__))
     project_root = os.path.dirname(current_script_dir)
     relative_path_to_file = './data/faces_training'
@@ -92,6 +100,7 @@ def main():
     train_iterator = DataLoader(train_data, shuffle=True, batch_size=BATCH_SIZE)
     test_iterator = DataLoader(test_data, shuffle=False, batch_size=BATCH_SIZE)
 
+    # Training and testing
     if st.sidebar.button("Train"):
         model = Network()
         model.to(device)

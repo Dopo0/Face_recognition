@@ -10,11 +10,10 @@ def announce_recognition():
     engine.say("Your face has been recognized.")
     engine.runAndWait()
 
-
 def crop_photo(img):
     mp_face_detection = mp.solutions.face_detection
     mp_drawing = mp.solutions.drawing_utils
-    face_detection = mp_face_detection.FaceDetection(min_detection_confidence=0.9)
+    face_detection = mp_face_detection.FaceDetection(min_detection_confidence=0.2)
 
     # Convert the image to RGB (required for MediaPipe)
     rgb_image = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
@@ -41,17 +40,10 @@ def crop_photo(img):
     # Display all cropped faces_try
     for i, face in enumerate(cropped_faces):
         st.write('faces_try cropped')
-        #st.image(face, caption=f"Detected Face {i+1}", channels="BGR")
-
-    # Display the image with rectangles
-    #st.image(img, caption="Detected Faces", channels="BGR")
 
     face_detection.close()
     return cropped_faces
 def main():
-
-
-
     person_name = st.text_input("New person to add:")
     img_file_buffer = st.camera_input("Take a picture")
 
@@ -59,9 +51,6 @@ def main():
         # To read image file buffer with OpenCV:
         bytes_data = img_file_buffer.getvalue()
         cv2_img = cv2.imdecode(np.frombuffer(bytes_data, np.uint8), cv2.IMREAD_COLOR)
-
-        # Show the picture taken
-        #st.image(cv2_img, caption="Original Image", channels="BGR")
 
         # Perform face detection and display the results
         crop_faces = crop_photo(cv2_img)
@@ -76,8 +65,6 @@ def main():
 
                 save_path = os.path.join(save_folder, f"face_{i + 1}.jpg")
                 cv2.imwrite(save_path, face)
-
-                # Voice notification
 
 if __name__ == "__main__":
     main()

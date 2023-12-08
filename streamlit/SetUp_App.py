@@ -1,11 +1,8 @@
-
 import streamlit as st
 import pyttsx3
 # Page Configurations
 def initialize_app():
-
     welcome_message = "Welcome to Cyber App ID. This is your virtual assistant."
-
     # Play welcome message on page load
     st.text(welcome_message)
     text_to_speech(welcome_message)
@@ -17,11 +14,12 @@ def text_to_speech(text):
     engine = pyttsx3.init()
     engine.say(text)
     engine.runAndWait()
+
+
 st.set_page_config(
     page_title="Face Recognition App",
     page_icon='face_with_spiral_eyes',
     layout= 'wide',
-    #initial_sidebar_state='expanded',
 )
 
 st.markdown(

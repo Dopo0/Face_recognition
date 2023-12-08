@@ -21,6 +21,7 @@ import io
 #from 4_CNN_retraining import Network
 import streamlit as st
 
+# definition of the class Network same as the training
 class Network(nn.Module):
     def __init__(self):
         super(Network, self).__init__()
@@ -52,6 +53,7 @@ class Network(nn.Module):
         x = F.log_softmax(x, dim=1)
         return x
 
+# Process frames in the video to predict
 def process_image(frame):
 
     cv2.flip(frame, 1)
@@ -88,6 +90,8 @@ def process_image(frame):
             cv2.putText(frame, f'{person}-{confidence}', (bbox_x, bbox_y - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 255, 0), 2)
 
     return frame
+
+# Predict frames
 def predict(frame):
     model.eval()
 
@@ -143,6 +147,7 @@ def main():
     )
 
 if __name__ == "__main__":
+    # loading model
     model = Network()
     state_dict = torch.load('obj/model.pt', map_location='cpu')
     model.load_state_dict(state_dict)
