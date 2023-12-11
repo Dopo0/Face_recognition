@@ -25,7 +25,7 @@ project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 folder_path = os.path.join(project_root, 'data/faces_training')
 
 # Relative number of predicted classes
-NUM_CLASSES = len(os.listdir(folder_path))
+NUM_CLASSES = len(os.listdir(folder_path)) - 1
 
 # definition of the class Network same as the training
 class Network(nn.Module):
@@ -158,6 +158,13 @@ def main():
         video_processor_factory=VideoProcessor,
         async_processing=True,
     )
+    folder_path = os.path.join(project_root, 'data/faces_training')
+
+    items = os.listdir(folder_path)
+    custom_class_names = sorted([item for item in items if os.path.isdir(os.path.join(folder_path, item))])
+
+    st.write(custom_class_names)
+
 
 if __name__ == "__main__":
     # loading model

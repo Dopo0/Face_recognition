@@ -18,11 +18,11 @@ project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 folder_path = os.path.join(project_root, 'data/faces_training')
 
 # Relative number of predicted classes
-NUM_CLASSES = len(os.listdir(folder_path))
+NUM_CLASSES = len(os.listdir(folder_path)) - 1
 
 # Definition of the class
 class Network(nn.Module):
-    def __init__(self):
+    def __init__(self,NUM_CLASSES):
         super(Network, self).__init__()
         self.convolutional_neural_network_layers = nn.Sequential(
             nn.Conv2d(in_channels=3, out_channels=12, kernel_size=3, padding=1, stride=1),
@@ -45,7 +45,7 @@ class Network(nn.Module):
             nn.Linear(1024, out_features=512),
             # nn.ReLU(),
             nn.Dropout(p=0.2),
-            nn.Linear(in_features=512, out_features=4)
+            nn.Linear(in_features=512, out_features=NUM_CLASSES)
         )
 
     def forward(self, x):
@@ -113,7 +113,7 @@ def main():
 
     # Training and testing
     if st.sidebar.button("Train"):
-        model = Network()
+        model = Network(NUM_CLASSES)
         model.to(device)
         model.apply(initialize_parameters)
 
@@ -174,6 +174,7 @@ def main():
 
             if save_models:
                 save_model(model)
+
 
 if __name__ == '__main__':
     main()
