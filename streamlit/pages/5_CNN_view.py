@@ -149,7 +149,11 @@ def main():
 if __name__ == "__main__":
     # loading model
     model = Network()
-    state_dict = torch.load('obj/model.pt', map_location='cpu')
+
+    file_names = os.listdir('obj')
+    model_path = st.sidebar.selectbox("Select the model to test: ",file_names)
+
+    state_dict = torch.load(os.path.join("obj",model_path), map_location='cpu')
     model.load_state_dict(state_dict)
 
     # Initialize MediaPipe Face Detection

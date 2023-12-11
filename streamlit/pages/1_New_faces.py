@@ -4,6 +4,7 @@ import numpy as np
 import mediapipe as mp
 import os
 import pyttsx3
+import time
 
 def announce_recognition():
     engine = pyttsx3.init()
@@ -12,7 +13,7 @@ def announce_recognition():
 
 def crop_photo(img):
     mp_face_detection = mp.solutions.face_detection
-    mp_drawing = mp.solutions.drawing_utils
+    # mp_drawing = mp.solutions.drawing_utils
     face_detection = mp_face_detection.FaceDetection(min_detection_confidence=0.2)
 
     # Convert the image to RGB (required for MediaPipe)
@@ -60,10 +61,12 @@ def main():
             announce_recognition()
             btn = st.button('Save this image', key=f'save {i}')
             if btn:
-                save_folder = os.path.join("../faces_crop", person_name)
+                save_folder = os.path.join("../streamlit/data/faces_training", person_name)
                 os.makedirs(save_folder, exist_ok=True)
+                st.success("image saved in {}".format(save_folder))
 
-                save_path = os.path.join(save_folder, f"face_{i + 1}.jpg")
+                timestamp = int(time.time())
+                save_path = os.path.join(save_folder, f"face_{person_name}_{timestamp}_{i + 1}.jpg")
                 cv2.imwrite(save_path, face)
 
 if __name__ == "__main__":
