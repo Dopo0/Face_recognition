@@ -13,6 +13,12 @@ from PIL import Image
 import streamlit as st
 import time
 
+# Path to this file
+project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+folder_path = os.path.join(project_root, 'data/faces_training')
+
+# Relative number of predicted classes
+NUM_CLASSES = len(os.listdir(folder_path))
 
 # Definition of the class
 class Network(nn.Module):
@@ -21,22 +27,25 @@ class Network(nn.Module):
         self.convolutional_neural_network_layers = nn.Sequential(
             nn.Conv2d(in_channels=3, out_channels=12, kernel_size=3, padding=1, stride=1),
             nn.BatchNorm2d(12),
-            nn.ReLU(),
-            nn.MaxPool2d(kernel_size=2),  # 112 #28 #56
+            #nn.ReLU(),
+            nn.MaxPool2d(kernel_size=2),
             nn.Conv2d(in_channels=12, out_channels=24, kernel_size=3, padding=1, stride=1),
             nn.BatchNorm2d(24),
-            nn.ReLU(),
-            nn.MaxPool2d(kernel_size=2),  # 56 #14 #28
+            #nn.ReLU(),
+            nn.MaxPool2d(kernel_size=2),
             nn.Conv2d(in_channels=24, out_channels=48, kernel_size=3, padding=1, stride=1),
             nn.BatchNorm2d(48),
-            nn.ReLU(),
-            nn.MaxPool2d(kernel_size=2)  # 56 #7 #14
+            #nn.ReLU(),
+            nn.MaxPool2d(kernel_size=2)
         )
         self.linear_layers = nn.Sequential(
-            nn.Linear(48 * 14 * 14, out_features=128),
-            nn.ReLU(),
+            nn.Linear(48 * 14 * 14, out_features=1024),
+            #nn.ReLU(),
             nn.Dropout(p=0.2),
-            nn.Linear(in_features=128, out_features=4)
+            nn.Linear(1024, out_features=512),
+            # nn.ReLU(),
+            nn.Dropout(p=0.2),
+            nn.Linear(in_features=512, out_features=4)
         )
 
     def forward(self, x):
@@ -45,6 +54,7 @@ class Network(nn.Module):
         x = self.linear_layers(x)
         x = F.log_softmax(x, dim=1)
         return x
+
 
 # Parameters Initialization
 def initialize_parameters(m):
@@ -59,7 +69,7 @@ def initialize_parameters(m):
 def save_model(model):
     with st.spinner('saving model...'):
         time.sleep(5)
-        torch.save(model.state_dict(), 'obj/user_model.pt')
+        torch.save(model.state_dict(), 'obj/user_model2.pt')
     st.success('Saved!')
 def main():
     st.title('CNN retraining')
@@ -92,11 +102,12 @@ def main():
     test_transform = transforms.Compose([transforms.Resize(IMAGE_SIZE),
                                          transforms.ToTensor(),
                                          transforms.Normalize((0.1,), (0.3,))])
-    dataset = datasets.ImageFolder(main_dir, transform=train_transform)
 
-    train_size = int(0.8 * len(dataset))
-    test_size = len(dataset) - train_size
-    train_data, test_data = random_split(dataset, [train_size, test_size])
+    train_path = './data/faces_training'
+    test_path = './data/faces_training'
+    train_data = datasets.ImageFolder(train_path, transform=train_transform)
+    test_data = datasets.ImageFolder(test_path, transform=train_transform)
+
     train_iterator = DataLoader(train_data, shuffle=True, batch_size=BATCH_SIZE)
     test_iterator = DataLoader(test_data, shuffle=False, batch_size=BATCH_SIZE)
 
