@@ -22,3 +22,13 @@ The app will open in your default web browser, and you can start exploring the f
 
 ## Contributing
 Feel free to contribute to the development of this project. If you find any bugs or have suggestions for improvements, please create an issue or submit a pull request.
+
+
+## App developed by:
+Thiago Yoshimura: https://github.com/thiagoyoshimura
+Sofia Guerrero: https://github.com/sofiaguego
+Daniel Ochoa:  https://github.com/Dopo0
+
+## Screenshots
+
+<img src="https://github.com/Dopo0/Face_recognition/blob/main/streamlit/icons/example.png" width=600px>
