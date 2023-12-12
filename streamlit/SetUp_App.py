@@ -15,7 +15,6 @@ def text_to_speech(text):
     engine.say(text)
     engine.runAndWait()
 
-
 st.set_page_config(
     page_title="Face Recognition App",
     page_icon='face_with_spiral_eyes',

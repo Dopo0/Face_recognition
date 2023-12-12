@@ -163,7 +163,9 @@ def main():
     items = os.listdir(folder_path)
     custom_class_names = sorted([item for item in items if os.path.isdir(os.path.join(folder_path, item))])
 
-    st.write(custom_class_names)
+    st.subheader("Actual persons in the model")
+    for name in custom_class_names:
+        st.write(name)
 
 
 if __name__ == "__main__":
