@@ -110,7 +110,7 @@ def main():
     # Update the container with the result or new message
     status_container.text("Mapping your face features to a name. Almost there...")
     #time.sleep(5)  # Simulating another 5-second delay
-    if st.button("Start cropping faces"):
+    if st.sidebar.button("Start cropping faces"):
         crop_originals()
     # Final message after the process is complete
     status_container.text("Face classification and mapping completed!")
