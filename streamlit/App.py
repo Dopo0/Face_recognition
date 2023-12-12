@@ -1,6 +1,6 @@
 # Libraries
 import streamlit as st
-from PIL import Image
+# from PIL import Image
 import base64
 import SetUp_App
 import time

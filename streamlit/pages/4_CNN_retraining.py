@@ -5,13 +5,15 @@ import torch.optim as optim
 import torch.nn.functional as F
 import torchvision.transforms as transforms
 from torchvision import datasets
-from torch.utils.data import DataLoader, random_split
-import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-from PIL import Image
+from torch.utils.data import DataLoader
 import streamlit as st
 import time
+
+# import numpy as np
+# import pandas as pd
+# import matplotlib.pyplot as plt
+# from PIL import Image
+
 
 # Path to this file
 project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))

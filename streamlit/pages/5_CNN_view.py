@@ -1,5 +1,3 @@
-import cv2
-import numpy as np
 import av
 import mediapipe as mp
 from streamlit_webrtc import webrtc_streamer, WebRtcMode, RTCConfiguration
@@ -9,16 +7,19 @@ import numpy as np
 import os
 import torch
 import torch.nn as nn
-import torch.optim as optim
 import torch.nn.functional as F
 import torchvision.transforms as transforms
-from torchvision import datasets
-from torch.utils.data import DataLoader, random_split
-import pandas as pd
-import matplotlib.pyplot as plt
 from PIL import Image
-import io
 import streamlit as st
+
+# import cv2
+# import numpy as np
+# from torchvision import datasets
+# from torch.utils.data import DataLoader, random_split
+# import pandas as pd
+# import matplotlib.pyplot as plt
+# import torch.optim as optim
+# import io
 
 # Path to this file
 project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
