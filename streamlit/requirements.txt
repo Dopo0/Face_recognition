@@ -1,0 +1,11 @@
+numpy
+pandas
+torch
+torchvision
+torchaudio
+streamlit
+opencv-python
+Pillow
+mediapipe
+streamlit-webrtc
+pyttsx3
