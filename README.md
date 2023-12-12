@@ -26,7 +26,9 @@ Feel free to contribute to the development of this project. If you find any bugs
 
 ## App developed by:
 Thiago Yoshimura: https://github.com/thiagoyoshimura
+
 Sofia Guerrero: https://github.com/sofiaguego
+
 Daniel Ochoa:  https://github.com/Dopo0
 
 ## Screenshots
