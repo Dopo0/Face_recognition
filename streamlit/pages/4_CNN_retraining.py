@@ -71,7 +71,7 @@ def initialize_parameters(m):
 def save_model(model):
     with st.spinner('saving model...'):
         time.sleep(5)
-        torch.save(model.state_dict(), 'obj/user_model2.pt')
+        torch.save(model.state_dict(), 'obj/user_model.pt')
     st.success('Saved!')
 def main():
     st.title('CNN retraining')
