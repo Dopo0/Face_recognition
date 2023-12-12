@@ -20,7 +20,7 @@ project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 folder_path = os.path.join(project_root, 'data/faces_training')
 
 # Relative number of predicted classes
-NUM_CLASSES = len(os.listdir(folder_path)) - 1
+NUM_CLASSES = len(os.listdir(folder_path))
 
 # Definition of the class
 class Network(nn.Module):

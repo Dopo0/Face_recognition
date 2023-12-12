@@ -10,7 +10,7 @@ time.sleep(3)
 initialize_app()
 
 def main():
-    gif_path = "icons/GIF_Face.gif"
+    gif_path = "../streamlit/icons/GIF_Face.gif"
 
     with open(gif_path, "rb") as file_:
         contents = file_.read()
