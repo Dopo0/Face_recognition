@@ -115,10 +115,9 @@ def main():
     # Final message after the process is complete
     status_container.text("Face classification and mapping completed!")
 
-    st.markdown(
-        f'<img src="data:image/gif;base64,{data_url}" alt="face gif">',
-        unsafe_allow_html=True,
-    )
+    #st.markdown(
+     ##  unsafe_allow_html=True,
+   # )
 
 if __name__ == "__main__":
     main()

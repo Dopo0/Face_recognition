@@ -8,6 +8,7 @@ from torchvision import datasets
 from torch.utils.data import DataLoader
 import streamlit as st
 import time
+import base64
 
 # import numpy as np
 # import pandas as pd
@@ -74,7 +75,29 @@ def save_model(model):
         torch.save(model.state_dict(), 'obj/user_model2.pt')
     st.success('Saved!')
 def main():
-    st.title('CNN retraining')
+    st.title('CNN Retraining')
+    st.subheader('In process')
+
+    st.title('CNN')
+    gif_path = "../streamlit/icons/GIF_Abstract_Lines.gif"
+
+    with open(gif_path, "rb") as file_:
+        contents = file_.read()
+
+    # Encoding the GIF file
+    data_url = base64.b64encode(contents).decode("utf-8")
+
+    # Center the GIF using HTML and CSS
+    st.markdown(
+        f"""
+                   <div style="display: flex; justify-content: center; align-items: center;">
+                       <img src="data:image/gif;base64,{data_url}" alt="Uploaded GIF" style="max-width: 100%; max-height: 100%;">
+                   </div>
+                   """,
+        unsafe_allow_html=True
+    )
+
+
 
     # Selecting devices available
     devices = ['cpu']

@@ -21,6 +21,8 @@ import streamlit as st
 # import torch.optim as optim
 # import io
 
+
+
 # Path to this file
 project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 folder_path = os.path.join(project_root, 'data/faces_training')
